@@ -1,0 +1,40 @@
+/* 
+[
+ { name: "open login", status: "passed", durationMs: 400 },
+ { name: "fill form", status: "failed", durationMs: 700 },
+ { name: "submit", status: "skipped", durationMs: 0 }
+]
+*/
+
+let Results = [
+ { name: "open login", status: "passed", durationMs: 400 },
+ { name: "fill form", status: "failed", durationMs: 700 },
+ { name: "fill form", status: "failed", durationMs: 100 },
+ { name: "submit", status: "skipped", durationMs: 0 }
+]
+
+let TotalSteps=Results.length
+let PassCnt=0, FailCnt=0, SkipCnt=0, TotalDuration=0, clFailStepName
+for(step of Results)
+{
+if(step.status=="passed")
+PassCnt=PassCnt+1
+else if(step.status=="failed")
+{
+FailCnt=FailCnt+1
+FailStepName=step.name
+console.log("Failed Step Name: "+FailStepName)
+}
+
+else if(step.status=="skipped")
+SkipCnt=SkipCnt+1
+
+TotalDuration=TotalDuration+step.durationMs
+
+}
+
+console.log("Total Steps: "+TotalSteps)
+console.log("Passed Steps: "+PassCnt)
+console.log("Failed Steps: "+FailCnt)
+console.log("Skipped Steps: "+SkipCnt)
+console.log("Total Duration: "+TotalDuration+" ms")
